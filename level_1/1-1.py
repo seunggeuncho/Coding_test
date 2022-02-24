@@ -1,4 +1,6 @@
 def solution(id_list, report, k):
+    my_report = set(report)
+    report = list(my_report)
     answer = [0 for i in range(len(id_list))]
     num = [0 for i in range (len(id_list))]
     for i in report:
