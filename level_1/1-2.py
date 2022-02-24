@@ -29,3 +29,19 @@ def solution(lottos,win_nums):
     answer.append(order(cnt))
     answer.reverse()
     return answer
+
+////////////////////////////////////////////////////////////////////////(참고 풀이)
+"""count 함수 사용하여 0의 개수를 세고 rank라는 배열을 만들어 개수에 따라 순위를 반환 받기"""
+
+
+
+def solution(lottos, win_nums):
+
+    rank=[6,6,5,4,3,2,1]
+
+    cnt_0 = lottos.count(0)  
+    ans = 0
+    for x in win_nums:
+        if x in lottos:
+            ans += 1
+    return rank[cnt_0 + ans],rank[ans]
