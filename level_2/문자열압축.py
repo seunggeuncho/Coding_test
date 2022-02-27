@@ -27,3 +27,5 @@ def solution(s):
         if flag == 1 and answer > lst_len:
             answer = lst_len
     return answer
+/////////////////////
+런타임 에러(1)
