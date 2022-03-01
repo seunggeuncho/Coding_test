@@ -1,3 +1,4 @@
+def enter(ex):
     ex = ex + "님이 들어왔습니다."
     return ex
 
@@ -11,6 +12,7 @@ def list(record):
             for j in range(i):
                 if record[j].split(' ')[1] == record[i].split(' ')[1] and record[j].split(' ')[0] != "Leave" :
                     list[i] = record[j].split(' ')[2]
+                    break
         elif record[i].split(' ')[0] == "Change":
             list[i] = 0
         else:
@@ -19,30 +21,26 @@ def list(record):
     
 def solution(record):
     lst = list(record)
-    print(lst)
-        
     for i in range(len(record)):
         if record[i].split(' ')[0] == "Change" or record[i].split(' ')[0] == "Enter":
             for j in range(i):
-                if record[j].split(' ')[1] == record[i].split()[1] and record[i].split()[0] != "Change":
+                if record[j].split(' ')[1] == record[i].split()[1] and record[j].split()[0] != "Change":
                     lst[j] = record[i].split()[2]
-    print(lst)
     flag = 0
     k = 0
     for i in range(len(record)):
-        if record[i].split(' ')[0] == "Enter":
+        if record[i - k].split(' ')[0] == "Enter":
             lst[i] = enter(lst[i])
-        elif record[i].split(' ')[0] == "Leave":
+        elif record[i - k].split(' ')[0] == "Leave":
             lst[i] = leave(lst[i])
-        elif lst[i] == 0 and flag == 1:
-            i = i - k
-            print(i)
-            del lst[i]
+        elif lst[i - k] == 0 and flag == 1:
+            lst_num = i - k
+            del lst[lst_num]
             k += 1
-            print(lst)
-        elif lst[i] == 0:
+        elif lst[i - k] == 0:
             del lst[i]
             k += 1
             flag = 1
     answer = lst
     return answer
+
