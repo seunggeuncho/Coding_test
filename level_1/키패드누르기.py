@@ -1,3 +1,7 @@
+def dis(now, new):
+    x = abs(now[0]-new[0])
+    y = abs(now[1]-new[1])
+    return x+y
 def solution(numbers, hand):
     dic = {1:(1,1), 2:(1,2),3:(1,3),4:(2,1),5:(2,2),6:(2,3),7:(3,1),8:(3,2),9:(3,3),11:(4,1), 0:(4,2),12:(4,3)}
     answer=[]
@@ -18,8 +22,8 @@ def solution(numbers, hand):
             answer.append('R')
             now_right = num
         elif num in center:
-            left_dis = dist(dic[num],dic[now_left])
-            right_dis = dist(dic[num],dic[now_right])
+            left_dis = dis(dic[num],dic[now_left])
+            right_dis = dis(dic[num],dic[now_right])
             if right_dis > left_dis:
                 answer.append('L')
                 now_left=num
@@ -32,7 +36,5 @@ def solution(numbers, hand):
                     now_right = num
                 else:
                     now_left = num
-        """print(f'now_left:{now_left}, now_right:{now_right}')"""
-            
     answer = ('').join(answer)
     return answer
