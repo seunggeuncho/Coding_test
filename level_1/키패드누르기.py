@@ -1,4 +1,5 @@
 def solution(numbers, hand):
+    dic = {1:(1,1), 2:(1,2),3:(1,3),4:(2,1),5:(2,2),6:(2,3),7:(3,1),8:(3,2),9:(3,3),11:(4,1), 0:(4,2),12:(4,3)}
     answer=[]
     left = [1,4,7]
     right = [3,6,9]
@@ -17,32 +18,21 @@ def solution(numbers, hand):
             answer.append('R')
             now_right = num
         elif num in center:
-            if num == 0:
-                num = 11
-            tm_left = now_left
-            tm_right = now_right
-            if now_left in center:
-                if now_left > num:
-                    tm_left -= 2
-                elif now_left < num:
-                    tm_left += 2
-            if now_right in center:
-                if now_right > num:
-                    tm_right -= 2
-                elif now_right < num:
-                    tm_right += 2
-            if tm_left + 2 == tm_right or tm_left == tm_right:
+            left_dis = dist(dic[num],dic[now_left])
+            right_dis = dist(dic[num],dic[now_right])
+            if right_dis > left_dis:
+                answer.append('L')
+                now_left=num
+            elif right_dis < left_dis:
+                answer.append('R')
+                now_right=num
+            elif right_dis == left_dis:
                 answer.append(hand)
                 if hand == "R":
                     now_right = num
                 else:
                     now_left = num
-            elif abs(tm_left - num) > abs(tm_right - num):
-                answer.append("R")
-                now_right = num
-            else:
-                answer.append("L")
-                now_left = num
+        """print(f'now_left:{now_left}, now_right:{now_right}')"""
             
     answer = ('').join(answer)
     return answer
