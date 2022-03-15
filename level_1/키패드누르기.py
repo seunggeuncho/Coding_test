@@ -3,7 +3,7 @@ def dis(now, new):
     y = abs(now[1]-new[1])
     return x+y
 def solution(numbers, hand):
-    dic = {1:(1,1), 2:(1,2),3:(1,3),4:(2,1),5:(2,2),6:(2,3),7:(3,1),8:(3,2),9:(3,3),11:(4,1), 0:(4,2),12:(4,3)}
+    dic = {1:(1,1), 2:(1,2),3:(1,3),4:(2,1),5:(2,2),6:(2,3),7:(3,1),8:(3,2),9:(3,3),10:(4,1), 0:(4,2),12:(4,3)}
     answer=[]
     left = [1,4,7]
     right = [3,6,9]
@@ -36,5 +36,6 @@ def solution(numbers, hand):
                     now_right = num
                 else:
                     now_left = num
+            
     answer = ('').join(answer)
     return answer
