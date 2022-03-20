@@ -27,3 +27,22 @@ def solution(board, moves):
     print(bucket)
     answer = check(bucket)
     return answer
+
+/////////////////////////////////////////////////////////////
+
+def solution(board, moves):
+    answer =0
+    bucket = []
+    num =0
+    for select in moves:
+        height = 0
+        while (board[height][select - 1] == 0 and height < len(board[0]) - 1):
+            height += 1
+        if (board[height][select - 1] != 0):
+            bucket.append(board[height][select - 1])
+            if bucket[-1:] == bucket[-2:-1]:
+                del bucket[-1]
+                del bucket[-1]
+                num += 2
+            board[height][select - 1] = 0
+    return num
