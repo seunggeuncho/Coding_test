@@ -12,3 +12,11 @@ def solution(w,h):
             split_total += int(diff)
     answer = total - split_total
     return answer
+
+////////////////////////////////////////////
+
+from math import gcd
+def solution(w,h):
+    max = gcd(w,h)
+
+    return w * h - (w + h - max)
