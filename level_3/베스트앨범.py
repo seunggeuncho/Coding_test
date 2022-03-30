@@ -18,8 +18,9 @@ def solution(genres, plays):
         while play_li:
             find = play_li.pop(0)
             for idx in range(len(genres)):
-                if genres[idx] == max_album and plays[idx] == find:
+                if genres[idx] == max_album and plays[idx] == find and idx not in answer:
                     answer.append(idx)
+                    break
         del total[max_album]
     
     return answer
