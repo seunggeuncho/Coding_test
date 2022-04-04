@@ -3,9 +3,6 @@ def solution(n, computers):
     visit = [0 for i in range(n)]
     def DFS(idx):
         if visit[idx] == 1:
-            print(idx)
-            nonlocal answer
-            answer += 1
             return 
         else:
             visit[idx] = 1
@@ -16,4 +13,5 @@ def solution(n, computers):
     for idx in range(n):
         if visit[idx] == 0:
             DFS(idx)
+            answer += 1
     return answer
