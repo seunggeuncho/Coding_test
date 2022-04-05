@@ -19,7 +19,7 @@ def solution(begin, target, words):
         for idx  in range(0, len(words)):
             print(idx)
             if visit[idx] == 0:
-                if cmp(words[idx],word_li[-1]) <= 1 and idx >= len(word_li) - 1:
+                if cmp(words[idx],word_li[-1]) <= 1:
                     word_li.append(words[idx])
                     visit[idx] = 1
                     DFS(word_li)
