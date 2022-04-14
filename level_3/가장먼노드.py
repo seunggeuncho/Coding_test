@@ -5,20 +5,25 @@ def solution(n, edge):
     for node in edge:
             node_dict[node[0]].append(node[1])
             node_dict[node[1]].append(node[0])
-    print(node_dict)
     dis = {node:float('inf') for node in range(1, n + 1)}
     dis[1] = 0
     queue = []
-    heapq.heappush(queue,[dis[1] , 1])
+    heapq.heappush(queue,1)
     while queue:
-        current_dis,current_node = heapq.heappop(queue)
+        current_node = heapq.heappop(queue)
+        if current_node == 1:
+            current_dis = 0
+        else:
+            current_dis = 1
         if dis[current_node] < current_dis:
             continue
         
         for adjacent in node_dict[current_node]:
             distance = current_dis + 1
+            
             if distance < dis[adjacent]:
                 dis[adjacent] = distance
-                heapq.heappush(queue,[adjacent])
-    answer = 0
-    return answer
+                heapq.heappush(queue,adjacent)
+    answer = [k for k,v in dis.items() if max(dis.values()) == v]
+
+    return len(answer)
