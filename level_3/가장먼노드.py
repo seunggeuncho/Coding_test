@@ -1,29 +1,30 @@
-from collections import defaultdict
 import heapq
-def solution(n, edge):
-    node_dict = defaultdict(list)
-    for node in edge:
-            node_dict[node[0]].append(node[1])
-            node_dict[node[1]].append(node[0])
-    dis = {node:float('inf') for node in range(1, n + 1)}
-    dis[1] = 0
-    queue = []
-    heapq.heappush(queue,1)
-    while queue:
-        current_node = heapq.heappop(queue)
-        if current_node == 1:
-            current_dis = 0
-        else:
-            current_dis = 1
-        if dis[current_node] < current_dis:
-            continue
-        
-        for adjacent in node_dict[current_node]:
-            distance = current_dis + 1
-            
-            if distance < dis[adjacent]:
-                dis[adjacent] = distance
-                heapq.heappush(queue,adjacent)
-    answer = [k for k,v in dis.items() if max(dis.values()) == v]
 
-    return len(answer)
+def solution(n, vertex):
+    dic = defaultdict(list)
+    for start, end in vertex:
+        dic[start].append(end)
+        dic[end].append(start)
+    
+    distance = [float('-inf')] * (n + 1)
+    distance[1] = 0
+    
+    heap = []
+    for node in dic[1]:
+        distance[node] = 1
+        heapq.heappush(heap, node)
+    print(heap)
+    while heap:
+        now = heapq.heappop(heap)
+        for node in dic[now]:
+            if distance[node] == float('-inf') or distance[node] > distance[now] + 1:
+                distance[node] = distance[now] + 1
+                heapq.heappush(heap, node)
+    
+    max_distance = max(distance)
+    count = 0
+    for d in distance:
+        if d == max_distance:
+            count += 1
+    
+    return count
