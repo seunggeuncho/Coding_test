@@ -31,5 +31,6 @@ def solution(orders, course):
                 DFS(lst, order, num)
         print(ords)
     answer = []
+    print(orders)
     return answer
 solution(orders,course)
