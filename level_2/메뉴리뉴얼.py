@@ -1,16 +1,16 @@
-orders=["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"]
-course=[2,3,4]
-def solution(orders, course):
+    answer = []
     def DFS(lst,order, num,cmp):
         nonlocal check
         if len(lst) == num:
             nonlocal ords
+            lsts = lst[:]
+            lsts.sort()
+            lsts =''.join(lsts)
             print(lst)
-            lst =''.join(lst)
-            if lst in ords:
-                ords[lst] += 1
+            if lsts in ords:
+                ords[lsts] += 1
             else:
-                ords[lst] = 1
+                ords[lsts] = 1
         else:
             for idx in range(len(order)):
                 if check[idx] == 0 and cmp <= idx:
@@ -28,6 +28,7 @@ def solution(orders, course):
                 lst= []
                 DFS(lst, order, num , 0)
             print(ords)
-    answer = []
+        for k,v in ords.items():
+             if max(ords.values()) == v and v > 1:
+                answer.append(k)
     return answer
-solution(orders,course)
