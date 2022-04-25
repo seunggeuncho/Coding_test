@@ -4,9 +4,9 @@ course=[2,3,4]
 def solution(orders, course):
     def DFS(lst,order, num):
         nonlocal check
+        print(lst)
         if len(lst) == num:
             nonlocal ords
-            lst.sort()
             print(lst)
             lst =''.join(lst)
             if lst in ords:
@@ -29,8 +29,7 @@ def solution(orders, course):
                 order = list(order)
                 lst= []
                 DFS(lst, order, num)
-        print(ords)
+            
     answer = []
-    print(orders)
     return answer
 solution(orders,course)
