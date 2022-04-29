@@ -7,7 +7,9 @@ def solution(rows, columns, queries):
     lst = [[i + (columns * j) for i in range(1, rows + 1)] for j in range(0, columns)]
     for query in queries:
         temp = 0
-        
+        temp = lst[query[0]query[1]]
+        for idx in range(query[1], query[3] + 1):
+            
     print(lst)
     return answer
 solution(rows, columns, queries)
