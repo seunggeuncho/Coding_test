@@ -9,7 +9,5 @@ def solution(rows, columns, queries):
         temp = 0
         temp = lst[query[0]query[1]]
         for idx in range(query[1], query[3] + 1):
-            
-    print(lst)
     return answer
 solution(rows, columns, queries)
