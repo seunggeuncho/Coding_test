@@ -4,6 +4,32 @@ sys.stdin = open('test','r')
 
 N = int(input())
 lst = [list(map(int, input().split())) for _ in range(N)]
+result = []
+global one
+one = 0
+global zero
+zero = 0
+def divide(x,y,N):
+    anchore = lst[x][y]
+    for r in range(x, x+N):
+        for c in range(y, y+N):
+            if anchore != lst[r][c]:
+                divide(x, y, N//2)
+                divide(x, y + N//2, N//2)
+                divide(x + N//2, y, N//2)
+                divide(x + N//2, y + N//2, N//2)
+                return
+    if anchore == 0:
+        global zero
+        zero += 1
+    else:
+        global one
+        one += 1
+divide(0,0,N)
+print(zero)
+print(one)
+
+"""
 zero = 0
 one = 0
 lst_len = len(lst)
@@ -34,3 +60,4 @@ for r in range(lst_len):
 
 print(zero)
 print(one)
+"""
