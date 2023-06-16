@@ -8,23 +8,37 @@ check_lst = [i for i in range(N + 1)]
 
 def check(a):
     if check_lst[a] != a:
-        return check(check_lst[a])
-    return a
+        check_lst[a] = check(check_lst[a])
+    return check_lst[a]
 
 def union(a, b):
-    c_a = check(a)
-    c_b = check(b)
-    if c_a < c_b:
-        check_lst[c_b] = c_a
+    a = check(a)
+    b = check(b)
+    if a < b:
+        check_lst[b] = a
     else:
-        check_lst[c_a] = c_b
-
+        check_lst[a] = b
+"""
+for i in range(N):
+    link = list(map(int, input().split()))
+    for j in range(N):
+        if link[j] == 1:
+            union(i,j)
+check_lst = [-1] + check_lst
+path = list(map(int, input().split()))
+start = check_lst[path[0]]
+for i in range(1,M):
+    if check_lst[path[i]] != start:
+        print("NO")
+        break
+else:
+    print("YES")
+"""
 for r in range(1,N + 1):
     lst = list(map(int, input().split()))
     for c in range(len(lst)):
         if lst[c] == 1:
             union(r,c + 1)
-            print(check_lst)
 
 fin_lst = list(map(int, input().split()))
 
