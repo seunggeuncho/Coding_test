@@ -13,7 +13,7 @@ def hacking(node):
     while que:
         cur = que.popleft()
         for val in way[cur]:
-            if visited[val] == 0:
+            if visited[val] == 0 and val != node:
                 visited[val] = -1
                 cnt += 1
                 que.append(val)
