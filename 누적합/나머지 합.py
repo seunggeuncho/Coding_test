@@ -11,13 +11,13 @@ ans = 0
 for idx in range(1,lst_len):
     lst[idx] = lst[idx] + lst[idx -1]
 
-for val in lst:
-    if val % m == 0:
+for idx in range(len(lst)):
+    lst[idx] %= m
+    if lst[idx] == 0:
         ans += 1
-    tmp = 1
-    while val - tmp * m >= 0:
-        ans += dic[val - tmp * m]
-        tmp += 1
-    dic[val] += 1
+    dic[lst[idx]] += 1
+
+for key, val in dic.items():
+    ans += val * (val - 1) // 2
 
 print(ans)
