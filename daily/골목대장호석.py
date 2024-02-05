@@ -1,6 +1,10 @@
 import sys
 from collections import deque
 
+""""
+https://www.acmicpc.net/problem/20168
+"""
+
 sys.stdin = open('test.txt','r')
 
 n,m,a,b,c = map(int,input().split())
@@ -15,27 +19,24 @@ for _ in range(m):
 for idx in range(n + 1):
     graph[idx].sort(key = lambda x : x[1])
 
-def solv(s,t):
-    que = deque([[s,0,t]])
+def solv():
+    que = deque([[a,c,0]])
+    destin = float('inf')
     while que:
         node, cost, total = que.popleft()
+        if node == b:
+            destin = min(destin,total)
+            continue
         for new_n, new_c in graph[node]:
+            if cost - new_c < 0:
+                continue
+            if check[new_n] == 0 or new_n == b:
+                check[new_n] = 1
+                que.append([new_n,cost - new_c,max(total, new_c)])
+    return destin
 
-            big = new_c
-            if new_c < check[node]:
-                big = check[node]
-            if new_n == b and total - new_c >= 0:
-                if check[b] != 0 and check[b] > big:
-                    check[b] = big
-                elif check[b] == 0:
-                    check[b] = big
-            elif check[new_n] == 0 and total - new_c >= 0:
-                check[new_n] = big
-                que.append([new_n, new_c, total - new_c])
-    return check
-
-answer = solv(a,c)[b]
-if  answer != 0:
+answer = solv()
+if  answer != float('inf'):
     print(answer)
 else:
     print(-1)
