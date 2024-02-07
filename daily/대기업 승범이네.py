@@ -15,6 +15,8 @@ skill += list(map(int, input().split()))
 
 global ans
 ans = 0
+
+
 def dfs(start,total,cnt):
     print(start,total)
     if cnt == n:
