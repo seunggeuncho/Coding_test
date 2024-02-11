@@ -39,9 +39,10 @@ for _ in range(m):
     check[n1] = 1
     check[n2] = 1
 
-for idx in range(len(graph) - 1):
+for idx in range(len(graph) - 1):   #다음 노드와 비교해서 union
     x,y,node = graph[idx][0],graph[idx][1],graph[idx][2]
-    nxt_x,nxt_y,nxt_n
+
     if check[node] == 1:
         continue
     else:
+
