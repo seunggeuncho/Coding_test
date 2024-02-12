@@ -44,5 +44,4 @@ for idx in range(len(graph) - 1):   #다음 노드와 비교해서 union
 
     if check[node] == 1:
         continue
-    else:
 
