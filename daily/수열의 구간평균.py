@@ -5,22 +5,19 @@ sys.stdin = open('test.txt','r')
 n,k = map(int, input().split())
 lst = list(map(int, input().split()))
 
+lst = [a - k for a in lst]
 
-sum_lst = [0 for _ in range(n)]
-sum_lst[0] = lst[0]
-for idx in range(1, n):
-    sum_lst[idx] = lst[idx] + sum_lst[idx -1]
-
-sum_lst = [0] + sum_lst
 dic = defaultdict(int)
-result = 0
-for idx in range(1,n + 1):
-    acc = sum_lst[idx] - idx * k
+dic[0] = 1
+pre_sum ,ans= 0,0
 
-    result += dic[acc]
-    dic[acc] += 1
+for l in lst:
+    pre_sum += l
 
-print(result + dic[0])
+    ans += dic[pre_sum]
+    dic[pre_sum] += 1
+print(ans)
+
 """
 answer = 0
 for i in range(0,n):
