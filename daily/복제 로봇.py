@@ -26,8 +26,8 @@ def bfs(x,y,key):
         for idx in range(4):
             t_r = r + dir[idx][0]
             t_c = c + dir[idx][1]
-            if 0<= t_r < n and 0 <= t_c < n:
-                if miro[t_r][t_c] == 0 and check[t_r][t_c] == 0:
+            if 0 <= t_r < n and 0 <= t_c < n:
+                if miro[t_r][t_c] != '1' and check[t_r][t_c] == 0:
                     check[t_r][t_c] = 1
                     que.append([t_r,t_c,val + 1])
     return -1
